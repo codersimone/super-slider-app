@@ -1,0 +1,21 @@
+.lines-container {
+    display: flex;
+    justify-content: space-around;
+    bottom: 5%;
+    padding-top: 3rem;
+}
+
+.lines {
+    width: 8rem;
+    color: #000000;
+    padding: 0.5rem 0 2rem 0;
+    border-top: 3px solid #000000;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    opacity: 0.2;
+}
+
+.lenes:hover {
+    opacity: 1;
+}
