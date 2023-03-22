@@ -3,12 +3,16 @@ import Arrow from './components/arrows';
 import Slider from './components/slider';
 import NavLines from './components/navLines';
 import superBase from './data/superBase';
-// import './arrows-scrolling/index';
-
+// import {slideNext, slidePrev} from './arrows-scrolling/index';
 
 function App() {
   const universe = superBase[0].comicsUniverse;
-  // const alterEgo = superBase[heroeName].alterEgo;
+  const alterEgo = superBase[0].alterEgo;
+  const activity = superBase[0].typeOfActivity;
+  const friends = superBase[0].friends;
+  const powers = superBase[0].superPowers;
+  // const description = superBase[0].moreDetailed;
+  const image = superBase[0].superHeroePic;
 
   const linesNames = "Супермен";
   return (
@@ -17,14 +21,14 @@ function App() {
         <Arrow isLeft={true} />
         <div id="super-slider-card" class="slider-card">
           <Slider 
-            // heroeName={superHeroeCharacter}
+            heroeName={"Бэтмен"}
             universe={universe}
-            alterEgo={"Брюс Уэйн"}
-            activity={"борец с преступностью, филантроп, миллиардер"}
-            friends={"Робин, Бэтгерл"}
-            powers={"интеллект, обширные познания, знания боевых искусств, ловкость"}
+            alterEgo={alterEgo}
+            activity={activity}
+            friends={friends}
+            powers={powers}
             description={"по популярности ... бла бла бла"}
-            image={"pics/batman.jpeg"} 
+            image={image} 
           />
         </div>
         <Arrow isLeft={false} />
