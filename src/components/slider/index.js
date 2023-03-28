@@ -21,7 +21,7 @@ const Slider = ({
             <div class="details"><b>Суперсилы:</b> {powers}</div>
             <div class="details"><b>Подробнее:</b> {description}</div>
         </div>
-        <img src={image} class="slider__card-image" alt="Batman / DC comics" />
+        <img src={image} class="slider__card-image" alt={heroeName} />
         </>
     )
 }

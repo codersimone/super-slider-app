@@ -1,65 +1,55 @@
+import React, { useState } from 'react';
 import './App.css';
 import Arrow from './components/arrows';
 import Slider from './components/slider';
 import NavLines from './components/navLines';
-import superBase from './data/superBase';
-// import {slideNext, slidePrev} from './arrows-scrolling/index';
+import {slidePrev} from './arrows-scrolling/index.js';
+import {getSuperArr, getSuperHeroeInfo} from './getSuperArr.js';
 
 function App() {
-  const universe = superBase[0].comicsUniverse;
-  const alterEgo = superBase[0].alterEgo;
-  const activity = superBase[0].typeOfActivity;
-  const friends = superBase[0].friends;
-  const powers = superBase[0].superPowers;
-  // const description = superBase[0].moreDetailed;
-  const image = superBase[0].superHeroePic;
+  const superArr = getSuperArr();
+//устанавливаем стартовое значение состояния компонента (0)
+  const [slideNumber, setSlideNumber] = useState(0);
 
-  const linesNames = "Супермен";
+  function slideNext() {
+    //зацикливание слайдов 
+    //когда текущий индекс (переменная index) доходит до конца массива, то текущий индекс (переменная index) становится нулевым (index = 0)
+    if (slideNumber === superArr.length-1) {
+      setSlideNumber(0);
+    // в других случаях текущий индекс (переменная index) станет следующим слайдом (index+1)
+    } else (setSlideNumber(slideNumber+1));
+}
+
+const heroeInfo = getSuperHeroeInfo(slideNumber);
+
   return (
     <div class="main-container">
       <div class="slider-container">
-        <Arrow isLeft={true} />
+        <Arrow onclick={slidePrev} isLeft={true} />
         <div id="super-slider-card" class="slider-card">
           <Slider 
-            heroeName={"Бэтмен"}
-            universe={universe}
-            alterEgo={alterEgo}
-            activity={activity}
-            friends={friends}
-            powers={powers}
+            heroeName={heroeInfo.superHeroeCharacter}
+            universe={heroeInfo.comicsUniverse}
+            alterEgo={heroeInfo.alterEgo}
+            activity={heroeInfo.activity}
+            friends={heroeInfo.friends}
+            powers={heroeInfo.powers}
             description={"по популярности ... бла бла бла"}
-            image={image} 
+            image={heroeInfo.superHeroePic} 
           />
         </div>
-        <Arrow isLeft={false} />
+        <Arrow onclick={() => slideNext()} isLeft={false} />
       </div>
-      <div class="lines-container">
+      {superArr.map(item => (
+        <div class="lines-container">
         <div class="lines">
           <NavLines 
-            linesNames={linesNames}
-          />
-        </div>
-        <div class="lines">
-          <NavLines 
-            linesNames={linesNames}
-          />
-        </div>
-        <div class="lines">
-          <NavLines 
-            linesNames={linesNames}
-          />
-        </div>
-        <div class="lines">
-          <NavLines 
-            linesNames={linesNames}
-          />
-        </div>
-        <div class="lines">
-          <NavLines 
-            linesNames={linesNames}
+            linesNames={item}
           />
         </div>
       </div>
+      ))}
+  
     </div>
   );
 }
